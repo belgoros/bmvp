@@ -15,7 +15,7 @@ defmodule Bmvp.Articles.Article do
   @doc false
   def changeset(article, attrs) do
     article
-    |> cast(attrs, [:title, :content])
+    |> cast(attrs, [:title, :content, :author_id])
     |> validate_required([:title, :content])
   end
 end
