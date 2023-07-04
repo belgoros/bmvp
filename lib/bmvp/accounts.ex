@@ -167,6 +167,15 @@ defmodule Bmvp.Accounts do
     |> Repo.update()
   end
 
+  def get_user_by_username(username) do
+    User
+    |> Repo.get_by(username: username)
+    |> case do
+      nil -> {:error, :not_found}
+      user -> {:ok, user}
+    end
+  end
+
   @doc ~S"""
   Delivers the update email instructions to the given user.
 
