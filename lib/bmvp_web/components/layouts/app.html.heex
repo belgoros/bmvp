@@ -22,7 +22,7 @@
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <ul class="relative z-10 flex items-center justify-end gap-4 px-4 sm:px-6 lg:px-8">
-          <%= if @current_user do %>
+          <%= if assigns[:current_user] do %>
             <li class="text-[0.8125rem] leading-6 text-zinc-900">
               <%= @current_user.email %>
             </li>
@@ -99,7 +99,7 @@
             </div>
             <div class="py-6">
               <ul class="relative z-10 flex items-center justify-end gap-4 px-4 sm:px-6 lg:px-8">
-                <%= if @current_user do %>
+                <%= if assigns[:current_user] do %>
                   <li class="text-[0.8125rem] leading-6 text-zinc-900">
                     <%= @current_user.email %>
                   </li>

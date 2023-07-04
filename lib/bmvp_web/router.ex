@@ -21,6 +21,7 @@ defmodule BmvpWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :home)
+    live "/u/:username", OverviewLive
   end
 
   # Other scopes may use custom stacks.
@@ -46,7 +47,6 @@ defmodule BmvpWeb.Router do
   end
 
   ## Authentication routes
-
   scope "/", BmvpWeb do
     pipe_through([:browser, :redirect_if_user_is_authenticated])
 
