@@ -4,10 +4,11 @@ defmodule Bmvp.Accounts.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "users" do
-    field :email, :string
-    field :password, :string, virtual: true, redact: true
-    field :hashed_password, :string, redact: true
-    field :confirmed_at, :naive_datetime
+    field(:email, :string)
+    field(:username, :string)
+    field(:password, :string, virtual: true, redact: true)
+    field(:hashed_password, :string, redact: true)
+    field(:confirmed_at, :naive_datetime)
 
     timestamps()
   end
@@ -40,6 +41,12 @@ defmodule Bmvp.Accounts.User do
     |> cast(attrs, [:email, :password])
     |> validate_email(opts)
     |> validate_password(opts)
+    |> add_random_username()
+  end
+
+  defp add_random_username(changeset) do
+    username = "#{Faker.Cat.En.name()}#{Faker.Person.En.last_name()}#{Enum.random(1000..9999)}"
+    put_change(changeset, :username, username)
   end
 
   defp validate_email(changeset, opts) do
@@ -101,6 +108,14 @@ defmodule Bmvp.Accounts.User do
       %{changes: %{email: _}} = changeset -> changeset
       %{} = changeset -> add_error(changeset, :email, "did not change")
     end
+  end
+
+  def username_changeset(user, attrs, opts \\ []) do
+    user
+    |> cast(attrs, [:username])
+    |> validate_length(:username, min: 5, max: 25)
+    |> unsafe_validate_unique(:username, Bmvp.Repo)
+    |> unique_constraint(:username)
   end
 
   @doc """
