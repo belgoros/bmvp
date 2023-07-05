@@ -21,6 +21,9 @@ config :bmvp, BmvpWeb.Endpoint,
   pubsub_server: Bmvp.PubSub,
   live_view: [signing_salt: "qxABL5pY"]
 
+# Configures Money library
+config :ex_money, default_cldr_backend: Bmvp.Cldr
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
