@@ -1,4 +1,5 @@
 defmodule BmvpWeb.Router do
+  alias BmvpWeb.PageController
   use BmvpWeb, :router
 
   import BmvpWeb.UserAuth
@@ -23,6 +24,7 @@ defmodule BmvpWeb.Router do
     get("/", PageController, :home)
     live("/u/:username", OverviewLive)
     live("/articles/:id", ArticleLive.Show, :show)
+    get("/checkout/success", PageController, :checkout_success)
   end
 
   # Other scopes may use custom stacks.
