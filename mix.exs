@@ -52,7 +52,8 @@ defmodule Bmvp.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:faker, "~> 0.17.0"},
-      {:ex_money_sql, "~> 1.9"}
+      {:ex_money_sql, "~> 1.9"},
+      {:lemon_ex, "~> 0.1.5"}
     ]
   end
 
