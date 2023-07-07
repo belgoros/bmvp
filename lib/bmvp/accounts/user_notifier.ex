@@ -8,7 +8,7 @@ defmodule Bmvp.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"Bmvp", "contact@example.com"})
+      |> from({"CashBlog", "contact@cashblog.app"})
       |> subject(subject)
       |> text_body(body)
 
@@ -32,6 +32,24 @@ defmodule Bmvp.Accounts.UserNotifier do
     #{url}
 
     If you didn't create an account with us, please ignore this.
+
+    ==============================
+    """)
+  end
+
+  @doc """
+  Deliver instructions to confirm the order.
+  """
+  def deliver_article_url(user_email, url, article) do
+    deliver(user_email, "Your article from CashBlog.app", """
+
+    ==============================
+
+    Hi #{user_email},
+
+    Here is the link to the article #{article.title} you just purchased:
+
+    #{url}
 
     ==============================
     """)

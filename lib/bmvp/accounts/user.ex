@@ -110,7 +110,7 @@ defmodule Bmvp.Accounts.User do
     end
   end
 
-  def username_changeset(user, attrs, opts \\ []) do
+  def username_changeset(user, attrs, _opts \\ []) do
     user
     |> cast(attrs, [:username])
     |> validate_length(:username, min: 5, max: 25)
