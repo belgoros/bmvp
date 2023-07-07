@@ -3,8 +3,8 @@
     <%= @article.title %>
   </h2>
   <div class="mt-10 font-normal article-content text-md">
-    <%= if (is_author(@current_user, @article)) do %>
-      <div><%= @article.content |> Phoenix.HTML.Format.text_to_html() %></div>
+    <%= if @show_full_article do %>
+      <div><%= Phoenix.HTML.Format.text_to_html(@article.content) %></div>
     <% else %>
       <div>
         <%= @article.content |> String.slice(0, 400) |> Phoenix.HTML.Format.text_to_html() %>
