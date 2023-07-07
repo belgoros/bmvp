@@ -8,7 +8,7 @@ defmodule BmvpWeb.WebhookHandler do
   @impl true
   def handle_event(%LemonEx.Webhooks.Event{name: "order_created"} = event) do
     article_id = event.meta["custom_data"]["article_id"]
-    user_email = email.data.user_email
+    user_email = event.data.user_email
 
     with {:ok, article} <- Articles.get_article(article_id),
          url <- UrlHelper.gen_unique_article_url(article_id),

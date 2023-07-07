@@ -1,4 +1,5 @@
 defmodule BmvpWeb.UrlHelper do
+  use BmvpWeb, :verified_routes
   @article_namespace "articles"
 
   def gen_unique_article_url(article_id) do

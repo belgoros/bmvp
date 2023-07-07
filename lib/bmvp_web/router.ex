@@ -1,5 +1,5 @@
 defmodule BmvpWeb.Router do
-  alias BmvpWeb.PageController
+  # alias BmvpWeb.PageController
   use BmvpWeb, :router
 
   import BmvpWeb.UserAuth
