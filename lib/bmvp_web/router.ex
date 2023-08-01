@@ -18,15 +18,6 @@ defmodule BmvpWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/", BmvpWeb do
-    pipe_through(:browser)
-
-    get("/", PageController, :home)
-    live("/u/:username", OverviewLive)
-    live("/articles/:id", ArticleLive.Show, :show)
-    get("/checkout/success", PageController, :checkout_success)
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", BmvpWeb do
   #   pipe_through :api
@@ -89,5 +80,14 @@ defmodule BmvpWeb.Router do
       live("/users/confirm/:token", UserConfirmationLive, :edit)
       live("/users/confirm", UserConfirmationInstructionsLive, :new)
     end
+  end
+
+  scope "/", BmvpWeb do
+    pipe_through(:browser)
+
+    get("/", PageController, :home)
+    live("/u/:username", OverviewLive)
+    live("/articles/:id", ArticleLive.Show, :show)
+    get("/checkout/success", PageController, :checkout_success)
   end
 end
