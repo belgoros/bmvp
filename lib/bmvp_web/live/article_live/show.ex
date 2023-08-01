@@ -58,7 +58,7 @@ defmodule BmvpWeb.ArticleLive.Show do
   def is_author(nil, _article), do: false
 
   def is_author?(current_user, article) do
-    current_user.id == article.author.id
+    current_user.id == article.author_id
   end
 
   defp page_title(:show), do: "Show Article"
