@@ -9,9 +9,9 @@
   </.header>
 
   <%= if Enum.count(@streams.articles) == 0 do %>
-  <div class="mt-20">
-    <BmvpWeb.Component.EmptyState.show text="You have no articles yet." image="wall-post.svg"/>
-  </div>
+    <div class="mt-20">
+      <BmvpWeb.Component.EmptyState.show text="You have no articles yet." image="wall-post.svg" />
+    </div>
   <% else %>
     <.table
       id="articles"
@@ -19,7 +19,9 @@
       row_click={fn {_id, article} -> JS.navigate(~p"/articles/#{article}") end}
     >
       <:col :let={{_id, article}} label="Title"><%= article.title %></:col>
-      <:col :let={{_id, article}} label="Content"><%= String.slice(article.content, 0, 200) %></:col>
+      <:col :let={{_id, article}} label="Content">
+        <%= String.slice(article.content, 0, 200) %>
+      </:col>
       <:action :let={{_id, article}}>
         <div class="sr-only">
           <.link navigate={~p"/articles/#{article}"}>Show</.link>
@@ -37,8 +39,12 @@
     </.table>
   <% end %>
 
-
-  <.modal :if={@live_action in [:new, :edit]} id="article-modal" show on_cancel={JS.patch(~p"/articles")}>
+  <.modal
+    :if={@live_action in [:new, :edit]}
+    id="article-modal"
+    show
+    on_cancel={JS.patch(~p"/articles")}
+  >
     <.live_component
       module={BmvpWeb.ArticleLive.FormComponent}
       id={@article.id || :new}
